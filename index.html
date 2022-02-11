@@ -4,35 +4,22 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- STYLE -->
     <link rel="stylesheet" href="style.css" />
 
-    <!-- Adds React to page -->
-    <!-- Load React API -->
+    <!-- REACT -->
     <script src="https://unpkg.com/react@16/umd/react.production.min.js"></script>
-    <!-- Load React DOM-->
     <script src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js"></script>
-    <!-- Load Babel Compiler -->
     <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+    <script src="app.js" type="text/babel"></script>
 
     <title>Pomodoro Timer</title>
   </head>
   <body>
     <h1>Pomodoro Timer</h1>
     <div id="root">
-      <p>timer goes here</p>
+      <p>React not working</p>
     </div>
-
-    <p>Time started</p>
   </body>
-
-  <script type="text/babel">
-    //   decorate AFTER everything is coded
-    console.log("connected");
-
-    function Hello() {
-      return <h1>Hello!</h1>;
-    }
-
-    ReactDOM.render(<Hello />, document.getElementById("root"));
-  </script>
 </html>
