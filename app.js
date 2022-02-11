@@ -12,19 +12,16 @@ class Timer extends React.Component {
             time: ((Date.now() - state.start) / 1000)
         }));
         //check for loop escape
+        timerStop();
+    }
+
+    // 1200 seconds in 20 minutes
+    timerStop() {
         if (this.state.time > 5) {
             console.log("timer done")
             clearInterval(this.interval);
         }
     }
-
-    // 1200 seconds in 20 minutes
-    // how to handle escape from interval
-    // timerStop(){
-    //     if(this.state.time > 5){
-
-    //     }
-    // }
 
     componentDidMount() {
         console.log("mounted");
@@ -40,16 +37,27 @@ class Timer extends React.Component {
     render() {
         return (
             <div>
-                <button>START</button>
                 <p>It's working: {Math.floor(this.state.time)}</p>
             </div>
         );
     }
 }
 
+class StartButton extends React.Component {
+    render() {
+        return (
+            <div>
+                {/* <Timer /> */}
+                <button>Start</button>
+            </div>
+        );
+
+    }
+}
+
 
 
 ReactDOM.render(
-    <Timer />,
+    <StartButton />,
     document.getElementById("root")
 );
