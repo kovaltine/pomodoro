@@ -4,21 +4,31 @@ console.log("connected");
 class Timer extends React.Component {
     constructor(props) {
         super(props);
-        this.state = { time: Date.now() };
+        this.state = { time: 0, start: Date.now() };
     }
+
     timeElapsed() {
         this.setState(state => ({
-            time: ((Date.now() - state.time) / 1000)
+            time: ((Date.now() - state.start) / 1000)
         }));
     }
+
     componentDidMount() {
         console.log("mounted");
+        // 1200 seconds in 20 minutes
+        // how to handle escape from interval
+        //while (this.state.time < 1200) {
+        console.log(this.state.time);
         this.interval = setInterval(() => this.timeElapsed(), 1000);
+        // }
+
     }
+
     componentWillUnmount() {
         console.log("unmounted")
         clearInterval(this.interval);
     }
+
     render() {
         return (
             <div>
