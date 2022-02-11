@@ -11,17 +11,25 @@ class Timer extends React.Component {
         this.setState(state => ({
             time: ((Date.now() - state.start) / 1000)
         }));
+        //check for loop escape
+        if (this.state.time > 5) {
+            console.log("timer done")
+            clearInterval(this.interval);
+        }
     }
+
+    // 1200 seconds in 20 minutes
+    // how to handle escape from interval
+    // timerStop(){
+    //     if(this.state.time > 5){
+
+    //     }
+    // }
 
     componentDidMount() {
         console.log("mounted");
-        // 1200 seconds in 20 minutes
-        // how to handle escape from interval
-        //while (this.state.time < 1200) {
         console.log(this.state.time);
         this.interval = setInterval(() => this.timeElapsed(), 1000);
-        // }
-
     }
 
     componentWillUnmount() {
@@ -32,6 +40,7 @@ class Timer extends React.Component {
     render() {
         return (
             <div>
+                <button>START</button>
                 <p>It's working: {Math.floor(this.state.time)}</p>
             </div>
         );
