@@ -1,6 +1,6 @@
 # Pomodoro Timer
 
-A pomodoro timer is a tool that I use regularly to focus on my studies. The purpose of this project is to create my own while also using it as an introduction to React. 
+A pomodoro timer is a tool that I use regularly to focus on my studies and improve productivity. The purpose of this project is to create my own while also using it as an introduction to React. 
 
 # Description
 
@@ -12,4 +12,8 @@ The website should be used with a modern browser. The code should be ready to de
 
 # Future Features
 
-Future editions of the pomodoro timer will include a mobile application so I can practice using react with mobile app development.
+Future editions of the pomodoro timer will include the following: 
+
+- increase duration of the timer for longer sessions
+- profiles and profile tracking so users can see their improvements
+- a mobile application so I can practice using react with mobile app development
