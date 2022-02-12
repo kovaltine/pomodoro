@@ -43,21 +43,21 @@ class Timer extends React.Component {
     }
 }
 
-class StartButton extends React.Component {
-    render() {
-        return (
-            <div>
-                {/* <Timer /> */}
-                <button>Start</button>
-            </div>
-        );
+// class StartButton extends React.Component {
+//     // constructor(props) {
+//     //     super(props);
+//     //     this.handleClick
+//     // }
+//
+//     render() {
+//         return (
+//             <div>
+//                 {/* <Timer /> */}
+//                 <button>Start</button>
+//             </div>
+//         );
+//
+//     }
+// }
 
-    }
-}
-
-
-
-ReactDOM.render(
-    <StartButton />,
-    document.getElementById("root")
-);
+ReactDOM.render(<Timer />, document.getElementById("root"));
