@@ -4,7 +4,7 @@ console.log("connected");
 class Timer extends React.Component {
     constructor(props) {
         super(props);
-        this.state = { time: 0, start: Date.now() };
+        this.state = { time: 0, start: 0 };
     }
 
     timeElapsed() {
@@ -12,21 +12,32 @@ class Timer extends React.Component {
             time: ((Date.now() - state.start) / 1000)
         }));
         //check for loop escape
-        timerStop();
+        this.timerStop();
     }
 
     // 1200 seconds in 20 minutes
     timerStop() {
-        if (this.state.time > 5) {
+        var end = 5;
+        if (this.state.time > end) {
+            // insert sound when the timer stops
             console.log("timer done")
-            clearInterval(this.interval);
+            this.componentWillUnmount();
         }
+    }
+
+    timerStart(){
+        //Date.now()
+        this.setState(state => ({
+            start: Date.now()
+        }));
+        this.interval = setInterval(() => this.timeElapsed(), 1000);
+
     }
 
     componentDidMount() {
         console.log("mounted");
         console.log(this.state.time);
-        this.interval = setInterval(() => this.timeElapsed(), 1000);
+        console.log(this.state.start);
     }
 
     componentWillUnmount() {
@@ -38,26 +49,19 @@ class Timer extends React.Component {
         return (
             <div>
                 <p>It's working: {Math.floor(this.state.time)}</p>
+                <button id='start' onClick={this.timerStart}>Start</button>
+                {/* <StartButton /> */}
             </div>
         );
     }
 }
 
-// class StartButton extends React.Component {
-//     // constructor(props) {
-//     //     super(props);
-//     //     this.handleClick
-//     // }
-//
-//     render() {
-//         return (
-//             <div>
-//                 {/* <Timer /> */}
-//                 <button>Start</button>
-//             </div>
-//         );
-//
-//     }
-// }
+function StartButton(){
+    return (
+        <div>
+            <button >Start</button>
+        </div>
+    );
+}
 
 ReactDOM.render(<Timer />, document.getElementById("root"));
