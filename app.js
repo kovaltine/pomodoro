@@ -1,6 +1,6 @@
 console.log("connected");
 
-// when you click the timer it makes a new object that lasts 20 min
+// when you click the timer it makes a new object that lasts a set time interval
 class Timer extends React.Component {
     constructor(props) {
         super(props);
@@ -8,6 +8,7 @@ class Timer extends React.Component {
         // binding "this" prevents scope issues when changing the state in the function
         this.startTimer = this.startTimer.bind(this);
         this.stopTimer = this.stopTimer.bind(this);
+        this.resetTimer = this.resetTimer.bind(this);
     }
 
     timeElapsed() {
@@ -41,12 +42,22 @@ class Timer extends React.Component {
         clearInterval(this.interval);
     }
 
+    resetTimer(){
+        clearInterval(this.interval);
+        this.setState({
+            start: 0, 
+            time: 0, 
+            delay: 0
+        });
+    }
+
     componentDidMount() {
         console.log("mounted");
         console.log(this.state.time);
         console.log(this.state.start);
     }
 
+    // can i start the timer again again unmounting? yes
     componentWillUnmount() {
         console.log("unmounted")
         clearInterval(this.interval);
@@ -58,7 +69,7 @@ class Timer extends React.Component {
                 <p>It's working: { Math.floor(this.state.time) }</p>
                 <button id='start' onClick={this.startTimer}>Start</button>
                 <button id='stop' onClick={this.stopTimer}>Stop</button>
-                {/* <button id='reset' onClick={this.resetTimer}>Reset</button> */}
+                <button id='reset' onClick={this.resetTimer}>Reset</button>
             </div>
         );
     }
