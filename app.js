@@ -4,14 +4,15 @@ console.log("connected");
 class Timer extends React.Component {
     constructor(props) {
         super(props);
-        this.state = { time: 0, start: 0 };
+        this.state = { time: 0, start: 0, delay: 0 };
         // binding "this" prevents scope issues when changing the state in the function
         this.startTimer = this.startTimer.bind(this);
+        this.stopTimer = this.stopTimer.bind(this);
     }
 
     timeElapsed() {
         this.setState(state => ({
-            time: ((Date.now() - state.start) / 1000)
+            time: (((Date.now() - state.start) / 1000) + state.delay)
         }));
         this.timerStop(); 
     }
@@ -27,12 +28,17 @@ class Timer extends React.Component {
     }
 
     startTimer() {
-        console.log("setStart")
         this.setState((state) => {
-            //maybe have to return this state
             return { start: Date.now() }
         });
         this.interval = setInterval(() => this.timeElapsed(), 1000);
+    }
+
+    stopTimer() {
+        this.setState((state) => {
+            return { delay: state.time }
+        })
+        clearInterval(this.interval);
     }
 
     componentDidMount() {
@@ -51,6 +57,8 @@ class Timer extends React.Component {
             <div>
                 <p>It's working: { Math.floor(this.state.time) }</p>
                 <button id='start' onClick={this.startTimer}>Start</button>
+                <button id='stop' onClick={this.stopTimer}>Stop</button>
+                {/* <button id='reset' onClick={this.resetTimer}>Reset</button> */}
             </div>
         );
     }
