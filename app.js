@@ -9,7 +9,7 @@ class Timer extends React.Component {
         this.startTimer = this.startTimer.bind(this);
         this.stopTimer = this.stopTimer.bind(this);
         this.resetTimer = this.resetTimer.bind(this);
-        this.timerEnd = this.timerEnd.bind(this);
+        //this.timerEnd = this.timerEnd.bind(this);
     }
 
     timeElapsed() {
