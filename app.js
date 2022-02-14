@@ -9,22 +9,29 @@ class Timer extends React.Component {
         this.startTimer = this.startTimer.bind(this);
         this.stopTimer = this.stopTimer.bind(this);
         this.resetTimer = this.resetTimer.bind(this);
+        this.timerEnd = this.timerEnd.bind(this);
     }
 
     timeElapsed() {
         this.setState(state => ({
             time: (((Date.now() - state.start) / 1000) + state.delay)
         }));
-        this.timerStop(); 
+        this.timerEnd(); 
     }
 
     // 1200 seconds in 20 minutes
-    timerStop() {
-        var end = 5;
+    timerEnd() {
+        var end = 2;
         if (this.state.time > end) {
             // insert sound when the timer stops
+            const alarm = new Audio('/resources/analog_alarm.wav')
+            alarm.play();
+            setTimeout(function () {
+                alarm.pause();
+                alarm.currentTime = 0;
+            }, 1000);
             console.log("timer done")
-            this.componentWillUnmount();
+            this.resetTimer();
         }
     }
 
