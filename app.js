@@ -4,24 +4,41 @@ console.log("connected");
 class Timer extends React.Component {
     constructor(props) {
         super(props);
-        this.state = { time: 0, start: 0, delay: 0 };
+        this.state = { time: 0, start: 0, delay: 0, min:0, sec:0 };
         // binding "this" prevents scope issues when changing the state in the function
         this.startTimer = this.startTimer.bind(this);
         this.stopTimer = this.stopTimer.bind(this);
         this.resetTimer = this.resetTimer.bind(this);
-        //this.timerEnd = this.timerEnd.bind(this);
+        this.showTimer = this.showTimer.bind(this);
+    }
+
+    showTimer() {
+        this.setState(state => {
+            var total = Math.floor(state.time);
+            if(total >= 60 && total % 60 == 0){
+                return {
+                    min: (Math.floor(total) / 60),
+                    sec: (Math.floor(total) % 60)
+                }        
+            } else {
+                return {
+                    sec: (Math.floor(total) % 60)
+                }
+            }
+        })
     }
 
     timeElapsed() {
         this.setState(state => ({
             time: (((Date.now() - state.start) / 1000) + state.delay)
         }));
+        this.showTimer();
         this.timerEnd(); 
     }
 
     // 1200 seconds in 20 minutes
     timerEnd() {
-        var end = 2;
+        var end = 120;
         if (this.state.time > end) {
             // insert sound when the timer stops
             const alarm = new Audio('/resources/analog_alarm.wav')
@@ -73,7 +90,7 @@ class Timer extends React.Component {
     render() {
         return (
             <div>
-                <p>It's working: { Math.floor(this.state.time) }</p>
+                <p>It's working: { this.state.min + ":" + this.state.sec }</p>
                 <button id='start' onClick={this.startTimer}>Start</button>
                 <button id='stop' onClick={this.stopTimer}>Stop</button>
                 <button id='reset' onClick={this.resetTimer}>Reset</button>
