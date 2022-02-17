@@ -1,12 +1,10 @@
-
-// when you click the timer it makes a new object that lasts a set time interval
 class Timer extends React.Component {
     constructor(props) {
         super(props);
         this.state = { 
             time: 0,
             begin: 0, 
-            delay: 0, 
+            gap: 0, 
             min: 0, 
             sec: 0 
         };
@@ -17,7 +15,18 @@ class Timer extends React.Component {
         this.showTimer = this.showTimer.bind(this);
     }
 
+    beginTimer() {
+        this.setState((state) => {
+            return { 
+                begin: Date.now(), 
+            }
+        });
+        this.showTimer();
+        this.interval = setInterval(() => this.timeElapsed(), 1000);
+    }
+
     showTimer() {
+        // timer will last 20 minutes
         var duration = 1200 - this.state.time;
         if (duration == 0){
             this.timerEnd();
@@ -34,11 +43,12 @@ class Timer extends React.Component {
 
     timeElapsed() {
         this.setState((state) => ({
-            time: Math.floor((Date.now() - state.begin)/1000) + state.delay
+            time: Math.floor((Date.now() - state.begin)/1000) + state.gap
         }));
         this.showTimer();
     }
 
+    // timer will play a sound when it's over
     timerEnd() {
         const alarm = new Audio('/resources/analog_alarm.wav')
         alarm.play();
@@ -49,35 +59,24 @@ class Timer extends React.Component {
         this.resetTimer();
     }
 
-    beginTimer() {
-        this.setState((state) => {
-            return { 
-                begin: Date.now(), 
-            }
-        });
-        this.showTimer();
-        this.interval = setInterval(() => this.timeElapsed(), 1000);
-    }
-
+    //saves the "gap" so the timer still starts at the right time when resumed 
     stopTimer() {
         this.setState((state) => {
-            return { delay: state.time }
+            return { gap: state.time }
         })
+        // stop running the timer
         clearInterval(this.interval);
     }
 
+    // reset all the states to 0
     resetTimer(){
         clearInterval(this.interval);
         this.setState({
             begin: 0, 
             time: 0, 
-            delay: 0
+            gap: 0
         });
         this.showTimer();     
-    }
-
-    componentWillUnmount() {
-        clearInterval(this.interval);
     }
 
     render() {
