@@ -38,7 +38,7 @@ class Timer extends React.Component {
 
     // 1200 seconds in 20 minutes
     timerEnd() {
-        var end = 120;
+        var end = 4; //two minutes to check showTimer function
         if (this.state.time > end) {
             // insert sound when the timer stops
             const alarm = new Audio('/resources/analog_alarm.wav')
@@ -67,12 +67,22 @@ class Timer extends React.Component {
     }
 
     resetTimer(){
+        console.log("resetTimer")
         clearInterval(this.interval);
         this.setState({
             start: 0, 
             time: 0, 
             delay: 0
         });
+        this.showTimer();
+        // this.setState((state) => {
+        //     return {
+        //         start: 0, 
+        //         time: 0, 
+        //         delay: 0
+        //     };
+        // });
+        
     }
 
     componentDidMount() {
