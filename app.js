@@ -1,60 +1,70 @@
-console.log("connected");
 
 // when you click the timer it makes a new object that lasts a set time interval
 class Timer extends React.Component {
     constructor(props) {
         super(props);
-        this.state = { time: 0, start: 0, delay: 0, min:0, sec:0 };
+        this.state = { 
+            time: 0,
+            begin: 0, 
+            delay: 0, 
+            min: 0, 
+            sec: 0 
+        };
         // binding "this" prevents scope issues when changing the state in the function
-        this.startTimer = this.startTimer.bind(this);
+        this.beginTimer = this.beginTimer.bind(this);
         this.stopTimer = this.stopTimer.bind(this);
         this.resetTimer = this.resetTimer.bind(this);
         this.showTimer = this.showTimer.bind(this);
     }
 
+    // need to fix time bug: goes to 18:0 and then to 18:59
     showTimer() {
-        this.setState(state => {
-            var total = Math.floor(state.time);
-            if(total >= 60 && total % 60 == 0){
-                return {
-                    min: (Math.floor(total) / 60),
-                    sec: (Math.floor(total) % 60)
-                }        
-            } else {
-                return {
-                    sec: (Math.floor(total) % 60)
+        var duration = 120 - this.state.time;
+        if (duration == 0){
+            timerEnd();
+        } else {
+            this.setState(state => {
+                if(duration >= 60 && duration % 60 == 0){
+                    return {
+                        min: 19 - (Math.floor(duration / 60)),
+                        sec: 59
+                    }        
+                } else {
+                    return {
+                        sec: (Math.floor(duration % 60)) - 1
+                    }
                 }
-            }
-        })
+            })
+        }
     }
 
     timeElapsed() {
-        this.setState(state => ({
-            time: (((Date.now() - state.start) / 1000) + state.delay)
+        this.setState((state) => ({
+            time: Math.floor((Date.now() - state.begin)/1000) + state.delay
         }));
         this.showTimer();
-        this.timerEnd(); 
     }
 
     // 1200 seconds in 20 minutes
     timerEnd() {
-        var end = 4; //two minutes to check showTimer function
-        if (this.state.time > end) {
-            // insert sound when the timer stops
-            const alarm = new Audio('/resources/analog_alarm.wav')
-            alarm.play();
-            setTimeout(function () {
-                alarm.pause();
-                alarm.currentTime = 0;
-            }, 1000);
-            console.log("timer done")
-            this.resetTimer();
-        }
+        const alarm = new Audio('/resources/analog_alarm.wav')
+        alarm.play();
+        setTimeout(function () {
+            alarm.pause();
+            // can i control what second it starts at?
+            alarm.currentTime = 0;
+        }, 1000); // alarm only lasts 1 second
+        this.resetTimer();
+        
     }
 
-    startTimer() {
+    beginTimer() {
         this.setState((state) => {
-            return { start: Date.now() }
+            return { 
+                begin: Date.now(), 
+                min: 19,
+                sec: 59 
+            }
         });
         this.interval = setInterval(() => this.timeElapsed(), 1000);
     }
@@ -67,41 +77,24 @@ class Timer extends React.Component {
     }
 
     resetTimer(){
-        console.log("resetTimer")
         clearInterval(this.interval);
         this.setState({
-            start: 0, 
+            begin: 0, 
             time: 0, 
             delay: 0
         });
-        this.showTimer();
-        // this.setState((state) => {
-        //     return {
-        //         start: 0, 
-        //         time: 0, 
-        //         delay: 0
-        //     };
-        // });
-        
+        this.showTimer();     
     }
 
-    componentDidMount() {
-        console.log("mounted");
-        console.log(this.state.time);
-        console.log(this.state.start);
-    }
-
-    // can i start the timer again again unmounting? yes
     componentWillUnmount() {
-        console.log("unmounted")
         clearInterval(this.interval);
     }
 
     render() {
         return (
             <div>
-                <p>It's working: { this.state.min + ":" + this.state.sec }</p>
-                <button id='start' onClick={this.startTimer}>Start</button>
+                <p>Countdown: { this.state.min + ":" + this.state.sec }</p>
+                <button id='begin' onClick={this.beginTimer}>Start</button>
                 <button id='stop' onClick={this.stopTimer}>Stop</button>
                 <button id='reset' onClick={this.resetTimer}>Reset</button>
             </div>
