@@ -19,20 +19,16 @@ class Timer extends React.Component {
 
     // need to fix time bug: goes to 18:0 and then to 18:59
     showTimer() {
-        var duration = 120 - this.state.time;
+        var duration = 10 - this.state.time;
         if (duration == 0){
-            timerEnd();
+            console.log("timer ending")
+            this.timerEnd();
         } else {
+            console.log(Math.floor(duration / 60));
             this.setState(state => {
-                if(duration >= 60 && duration % 60 == 0){
-                    return {
-                        min: 19 - (Math.floor(duration / 60)),
-                        sec: 59
-                    }        
-                } else {
-                    return {
-                        sec: (Math.floor(duration % 60)) - 1
-                    }
+                return {
+                    min: Math.floor(duration / 60),
+                    sec: (Math.floor(duration % 60))
                 }
             })
         }
@@ -45,27 +41,24 @@ class Timer extends React.Component {
         this.showTimer();
     }
 
-    // 1200 seconds in 20 minutes
     timerEnd() {
         const alarm = new Audio('/resources/analog_alarm.wav')
         alarm.play();
         setTimeout(function () {
             alarm.pause();
             // can i control what second it starts at?
-            alarm.currentTime = 0;
-        }, 1000); // alarm only lasts 1 second
+            alarm.currentTime = 2000;
+        }, 3000); // alarm only lasts 1 second
         this.resetTimer();
-        
     }
 
     beginTimer() {
         this.setState((state) => {
             return { 
                 begin: Date.now(), 
-                min: 19,
-                sec: 59 
             }
         });
+        this.showTimer();
         this.interval = setInterval(() => this.timeElapsed(), 1000);
     }
 
