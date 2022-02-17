@@ -3,8 +3,94 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: 'Noto Sans', sans-serif;
 }
 
 body {
   background: url("/resources/tomato_background.png") repeat fixed center;
 }
+
+#root{
+  display:flex;
+  flex-direction: column;
+  justify-content:center;
+  text-align: center;
+  background-color: #dada8cab;
+  padding: 8rem;
+  border: 1rem solid #000000;
+  border-radius: 3rem;
+  /* centering on the webpage */
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  color: #030301;
+}
+
+/* Title and Timer */
+
+#title {
+  font-size: 2rem;
+}
+
+#timer {
+  font-size: 4rem;
+  letter-spacing: 4px;
+
+}
+
+#timer_buttons{
+  padding: 1rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+
+/* Buttons */
+
+
+button{
+  padding: 1rem;
+  margin: 0.5rem;
+  border: 2px solid #000000;
+  border-radius: 1rem;
+}
+
+#start{
+  background-color: rgb(89, 170, 89);
+  transition-duration:0.4s; 
+}
+
+#start:hover{
+  background-color: #e4884a;
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+}
+
+#stop{
+  background-color: rgb(168, 74, 74);
+  transition-duration:0.4s; 
+}
+
+#stop:hover{
+  background-color: #e4884a;
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+}
+
+#reset{
+  background-color: rgb(108, 153, 206);
+  transition-duration:0.4s; 
+}
+
+#reset:hover{
+  background-color: #e4884a;
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+}
+
+/* keep it at the bottom of the page */
+footer{
+  position: absolute;
+  text-align: center;
+  bottom: 0;
+}
+

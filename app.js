@@ -17,11 +17,9 @@ class Timer extends React.Component {
         this.showTimer = this.showTimer.bind(this);
     }
 
-    // need to fix time bug: goes to 18:0 and then to 18:59
     showTimer() {
-        var duration = 10 - this.state.time;
+        var duration = 1200 - this.state.time;
         if (duration == 0){
-            console.log("timer ending")
             this.timerEnd();
         } else {
             console.log(Math.floor(duration / 60));
@@ -46,9 +44,8 @@ class Timer extends React.Component {
         alarm.play();
         setTimeout(function () {
             alarm.pause();
-            // can i control what second it starts at?
-            alarm.currentTime = 2000;
-        }, 3000); // alarm only lasts 1 second
+            alarm.currentTime = 0;
+        }, 3000);
         this.resetTimer();
     }
 
@@ -86,10 +83,14 @@ class Timer extends React.Component {
     render() {
         return (
             <div>
-                <p>Countdown: { this.state.min + ":" + this.state.sec }</p>
-                <button id='begin' onClick={this.beginTimer}>Start</button>
-                <button id='stop' onClick={this.stopTimer}>Stop</button>
-                <button id='reset' onClick={this.resetTimer}>Reset</button>
+                <h1 id="title">Pomodoro Timer</h1>
+                <p id="timer">{ this.state.min + ":" + this.state.sec }</p>
+                <div id="timer_buttons">
+                    <button id="start" onClick={this.beginTimer}>Start</button>
+                    <button id="stop" onClick={this.stopTimer}>Stop</button>
+                    <button id="reset" onClick={this.resetTimer}>Reset</button>
+                </div>
+                
             </div>
         );
     }
