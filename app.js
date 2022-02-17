@@ -25,6 +25,7 @@ class Timer extends React.Component {
         this.interval = setInterval(() => this.timeElapsed(), 1000);
     }
 
+    // set sec and min that will be shown in the timer
     showTimer() {
         // timer will last 20 minutes
         var duration = 1200 - this.state.time;

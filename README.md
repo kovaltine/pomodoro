@@ -10,6 +10,12 @@ The website is simple, the sole purpose for it is to be used 20 minutes at a tim
 
 The website should be used with a modern browser. The code should be ready to deploy on a server.
 
+# Next steps for this version
+- attribute resources 
+- add '0' to the numbers that are single digit
+- add a different "digital" font for the timer
+- improve appearance, maybe with a colour scheme
+
 # Future Features
 
 Future editions of the pomodoro timer will include the following: 
