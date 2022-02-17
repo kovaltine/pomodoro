@@ -13,8 +13,6 @@ The website should be used with a modern browser. The code should be ready to de
 # Next steps for this version
 - attribute resources 
 - add '0' to the numbers that are single digit
-- add a different "digital" font for the timer
-- improve appearance, maybe with a colour scheme
 
 # Future Features
 

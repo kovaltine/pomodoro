@@ -83,7 +83,7 @@ class Timer extends React.Component {
     render() {
         return (
             <div>
-                <h1 id="title">Pomodoro Timer</h1>
+                {/* <h1 id="title">Pomodoro Timer</h1> */}
                 <p id="timer">{ this.state.min + ":" + this.state.sec }</p>
                 <div id="timer_buttons">
                     <button id="start" onClick={this.beginTimer}>Start</button>
