@@ -12,7 +12,6 @@ class Timer extends React.Component {
     this.beginTimer = this.beginTimer.bind(this);
     this.stopTimer = this.stopTimer.bind(this);
     this.resetTimer = this.resetTimer.bind(this);
-    this.showTimer = this.showTimer.bind(this);
   }
 
   beginTimer() {
@@ -27,7 +26,7 @@ class Timer extends React.Component {
 
   // set sec and min that will be shown in the timer
   showTimer() {
-    var duration = 1200 - this.state.time;
+    var duration = 10 - this.state.time;
     if (duration == 0) {
       this.timerEnd();
     } else {
@@ -99,7 +98,6 @@ class Timer extends React.Component {
   render() {
     return (
       <div>
-        {/* <h1 id="title">Pomodoro Timer</h1> */}
         <p id="timer">{this.state.min + ":" + this.state.sec}</p>
         <div id="timer_buttons">
           <button id="start" onClick={this.beginTimer}>

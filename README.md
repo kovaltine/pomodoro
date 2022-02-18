@@ -14,6 +14,7 @@ The website should be used with a modern browser. The code should be ready to de
 
 Future editions of the pomodoro timer will include the following:
 
+- refactor
 - increase duration of the timer for longer sessions
 - profiles and profile tracking so users can see their improvements
 - a mobile application so I can practice using react with mobile app development
