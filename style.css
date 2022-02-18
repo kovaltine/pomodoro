@@ -3,17 +3,17 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Noto Sans', sans-serif;
+  font-family: "Noto Sans", sans-serif;
 }
 
 body {
   background: url("/resources/tomato_background.png") repeat fixed center;
 }
 
-#root{
-  display:flex;
+#root {
+  display: flex;
   flex-direction: column;
-  justify-content:center;
+  justify-content: center;
   text-align: center;
   background-color: #aa8daaab;
   padding: 8rem;
@@ -36,61 +36,59 @@ body {
 #timer {
   font-size: 4rem;
   letter-spacing: 4px;
-  font-family: 'Space Mono', monospace;
+  font-family: "Space Mono", monospace;
 }
 
-#timer_buttons{
+#timer_buttons {
   padding: 1rem;
   display: flex;
   flex-direction: row;
   justify-content: center;
 }
 
-
 /* Buttons */
 
-
-button{
+button {
   padding: 1rem;
   margin: 0.5rem;
   border: 2px solid #000000;
   border-radius: 1rem;
 }
 
-#start{
+#start {
   background-color: rgb(89, 170, 89);
-  transition-duration:0.4s; 
+  transition-duration: 0.4s;
 }
 
-#start:hover{
+#start:hover {
   background-color: #e4884a;
-  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
-#stop{
+#stop {
   background-color: rgb(168, 74, 74);
-  transition-duration:0.4s; 
+  transition-duration: 0.4s;
 }
 
-#stop:hover{
+#stop:hover {
   background-color: #e4884a;
-  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
-#reset{
+#reset {
   background-color: rgb(108, 153, 206);
-  transition-duration:0.4s; 
+  transition-duration: 0.4s;
 }
 
-#reset:hover{
+#reset:hover {
   background-color: #e4884a;
-  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 /* keep it at the bottom of the page */
-footer{
+footer {
   position: absolute;
   text-align: center;
   bottom: 0;
+  font-size: 0.75rem;
 }
-
