@@ -26,7 +26,7 @@ class Timer extends React.Component {
 
   // set sec and min that will be shown in the timer
   showTimer() {
-    var duration = 10 - this.state.time;
+    var duration = 1200 - this.state.time;
     if (duration == 0) {
       this.timerEnd();
     } else {
