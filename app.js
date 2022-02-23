@@ -5,13 +5,20 @@ class Timer extends React.Component {
       time: 0,
       begin: 0,
       gap: 0,
-      min: "20",
-      sec: "00",
+      min: 0,
+      sec: 0,
+      period: this.getTimerLength(),
     };
     // binding "this" prevents scope issues when changing the state in the function
     this.beginTimer = this.beginTimer.bind(this);
     this.stopTimer = this.stopTimer.bind(this);
     this.resetTimer = this.resetTimer.bind(this);
+  }
+
+  getTimerLength() {
+    var dur = prompt("How many minutes do you need the timer for?");
+    alert("refresh the page to set the timer again");
+    return dur * 60;
   }
 
   beginTimer() {
@@ -26,7 +33,8 @@ class Timer extends React.Component {
 
   // set sec and min that will be shown in the timer
   showTimer() {
-    var duration = 1200 - this.state.time;
+    console.log(this.state.period);
+    var duration = this.state.period - this.state.time;
     if (duration == 0) {
       this.timerEnd();
     } else {
