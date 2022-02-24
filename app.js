@@ -7,18 +7,23 @@ class Timer extends React.Component {
       gap: 0,
       min: 0,
       sec: 0,
-      period: this.getTimerLength(),
+      period: 0,
     };
     // binding "this" prevents scope issues when changing the state in the function
     this.beginTimer = this.beginTimer.bind(this);
     this.stopTimer = this.stopTimer.bind(this);
     this.resetTimer = this.resetTimer.bind(this);
+    this.getTimerLength = this.getTimerLength.bind(this);
   }
 
   getTimerLength() {
-    var dur = prompt("How many minutes do you need the timer for?");
-    alert("refresh the page to set the timer again");
-    return dur * 60;
+    var time = document.getElementById("time").value;
+    console.log(time);
+    this.setState((state) => {
+      return {
+        period: time * 60,
+      };
+    });
   }
 
   beginTimer() {
@@ -106,6 +111,10 @@ class Timer extends React.Component {
   render() {
     return (
       <div>
+        <input id="time" placeholder="enter a time"></input>
+        <button id="time_button" onClick={this.getTimerLength}>
+          Enter a Time
+        </button>
         <p id="timer">{this.state.min + ":" + this.state.sec}</p>
         <div id="timer_buttons">
           <button id="start" onClick={this.beginTimer}>
